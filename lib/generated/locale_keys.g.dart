@@ -1,0 +1,56 @@
+// DO NOT EDIT. This is code generated via package:easy_localization/generate.dart
+
+abstract class  LocaleKeys {
+  static const language = 'language';
+  static const sign_in = 'sign_in';
+  static const validation_required = 'validation_required';
+  static const mobile_number = 'mobile_number';
+  static const username = 'username';
+  static const email = 'email';
+  static const password = 'password';
+  static const validation_password_required = 'validation_password_required';
+  static const confirm_password = 'confirm_password';
+  static const validation_confirm_password_required = 'validation_confirm_password_required';
+  static const validation_password_match = 'validation_password_match';
+  static const required_field = 'required_field';
+  static const passwords_do_not_match = 'passwords_do_not_match';
+  static const password_length = 'password_length';
+  static const invalid_email = 'invalid_email';
+  static const invalid_phone_number = 'invalid_phone_number';
+  static const phone_number_length = 'phone_number_length';
+  static const logout_confirmation = 'logout_confirmation';
+  static const logout_confirmation_message = 'logout_confirmation_message';
+  static const cancel = 'cancel';
+  static const logout = 'logout';
+  static const continue_btn = 'continue_btn';
+  static const no_data_found = 'no_data_found';
+  static const phone_number_verification = 'phone_number_verification';
+  static const resend_otp_text = 'resend_otp_text';
+  static const resend_otp_button = 'resend_otp_button';
+  static const continue_button = 'continue_button';
+  static const process_completed_successfully = 'process_completed_successfully';
+  static const profile = 'profile';
+  static const edit_personal_details_success_message = 'edit_personal_details_success_message';
+  static const save_button = 'save_button';
+  static const technical_support = 'technical_support';
+  static const contact_us_label_1 = 'contact_us_label_1';
+  static const contact_us_label_2 = 'contact_us_label_2';
+  static const message = 'message';
+  static const submit = 'submit';
+  static const notifications = 'notifications';
+  static const phone_number = 'phone_number';
+  static const frequently_questions = 'frequently_questions';
+  static const terms_and_conditions = 'terms_and_conditions';
+  static const privacy_policy = 'privacy_policy';
+  static const about_us = 'about_us';
+  static const main_category = 'main_category';
+  static const sub_category = 'sub_category';
+  static const choose = 'choose';
+  static const country = 'country';
+  static const city = 'city';
+  static const area = 'area';
+  static const price = 'price';
+  static const description = 'description';
+  static const publish = 'publish';
+  static const view_results = 'view_results';
+}
