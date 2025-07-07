@@ -21,6 +21,7 @@ class ProjectsPage extends StatefulWidget {
 
 class _ProjectsPageState extends State<ProjectsPage> {
   final projectsBloc = locator<ProjectsBloc>();
+  final authenticationBloc = locator<AuthenticationBloc>();
   String? _selectedStatus;
   String? _searchQuery;
 
@@ -28,7 +29,9 @@ class _ProjectsPageState extends State<ProjectsPage> {
   void initState() {
     super.initState();
     // Fetch projects on page load
-    Future.microtask(() => projectsBloc.add(const FetchProjects()));
+    Future.microtask(() => authenticationBloc.add(GetProfileEvent()));
+    projectsBloc.add(const FetchProjects());
+   // Future.microtask(() => projectsBloc.add(const FetchProjects()));
   }
 
   String _formatDate(DateTime date) {
@@ -37,8 +40,8 @@ class _ProjectsPageState extends State<ProjectsPage> {
 
   Widget _buildProjectCard(Project project) {
     // You can adjust this to use real task data from the project
-    final int totalTasks = project.tasks?.length ?? 0;
-    final int completedTasks = project.tasks?.where((t) => t.status.toString() == 'TaskStatus.Done').length ?? 0;
+    final int totalTasks = project.tasksNumber ?? 0;
+    final int completedTasks = project.completedTasksNumber ?? 0;
     final double progress = totalTasks > 0 ? completedTasks / totalTasks : 0;
     final progressColor = progress == 1
         ? Colors.green
@@ -89,7 +92,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
                     children: [
                       const Icon(Icons.people_outline, size: 16, color: Colors.grey),
                       const SizedBox(width: 4),
-                      Text('${project.members?.length ?? 0} members', style: const TextStyle(color: Colors.grey, fontSize: 12)),
+                      Text('${project.membersNumber ?? 0} members', style: const TextStyle(color: Colors.grey, fontSize: 12)),
                     ],
                   ),
                   // You can add due date or other info here if available

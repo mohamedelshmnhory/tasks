@@ -2,7 +2,7 @@ import 'package:injectable/injectable.dart';
 import '../../../application/core/commundomain/entitties/based_api_result/api_result_model.dart';
 import '../../entities/project.dart';
 import '../../entities/task.dart';
-import '../../entities/user.dart';
+import '../../../domain/models/user.dart';
 import '../../datasources/project_remote_datasource/project_remote_datasource.dart';
 import 'project_repository.dart';
 

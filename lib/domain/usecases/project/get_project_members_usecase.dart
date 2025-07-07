@@ -4,13 +4,18 @@ import '../../../application/core/commundomain/usecases/base_params_usecase.dart
 import '../../models/user.dart';
 import '../../../data/repositories/project/project_repository.dart';
 
+class GetProjectMembersParams {
+  final int projectId;
+  GetProjectMembersParams(this.projectId);
+}
+
 @injectable
-class GetAllUsersUseCase implements BaseParamsUseCase<List<User>?, NoParams> {
-  const GetAllUsersUseCase(this._projectRepository);
+class GetProjectMembersUseCase implements BaseParamsUseCase<List<User>?, GetProjectMembersParams> {
+  const GetProjectMembersUseCase(this._projectRepository);
   final ProjectRepository _projectRepository;
 
   @override
-  Future<ApiResultModel<List<User>?>> call(NoParams params) {
-    return _projectRepository.getAllUsers();
+  Future<ApiResultModel<List<User>?>> call(GetProjectMembersParams params) {
+    return _projectRepository.getProjectMembers(params.projectId);
   }
 } 

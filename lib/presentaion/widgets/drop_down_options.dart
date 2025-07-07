@@ -85,7 +85,7 @@ void showDropdownOptions<T>(
                       final text = displayTextFunction.call(item);
                       final isSelected = tempSelected.contains(item);
                       return CheckboxListTile(
-                        title: CustomText(text, style: Theme.of(context).textTheme.headlineMedium),
+                        title: CustomText(text, style: Theme.of(context).textTheme.headlineSmall),
                         value: isSelected,
                         onChanged: (bool? checked) {
                           setState(() {

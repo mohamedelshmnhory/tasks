@@ -14,7 +14,7 @@ import '../../../../domain/usecases/project/get_projects_usecase.dart';
 import '../../../../application/core/commundomain/entitties/based_api_result/error_result_model.dart';
 import '../../../../data/entities/project.dart';
 import '../../../../data/entities/task.dart';
-import '../../../../data/entities/user.dart';
+import '../../../../domain/models/user.dart';
 import 'projects_event.dart';
 import 'projects_state.dart';
 

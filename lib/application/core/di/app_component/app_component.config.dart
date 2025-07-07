@@ -70,6 +70,8 @@ import 'package:tasks/domain/usecases/project/get_all_users_usecase.dart'
     as _i73;
 import 'package:tasks/domain/usecases/project/get_project_by_id_usecase.dart'
     as _i388;
+import 'package:tasks/domain/usecases/project/get_project_members_usecase.dart'
+    as _i213;
 import 'package:tasks/domain/usecases/project/get_project_tasks_usecase.dart'
     as _i454;
 import 'package:tasks/domain/usecases/project/get_projects_usecase.dart'
@@ -79,6 +81,7 @@ import 'package:tasks/domain/usecases/project/remove_project_member_usecase.dart
 import 'package:tasks/domain/usecases/project/update_project_usecase.dart'
     as _i118;
 import 'package:tasks/domain/usecases/task/delete_task_usecase.dart' as _i711;
+import 'package:tasks/domain/usecases/task/get_my_tasks_usecase.dart' as _i1047;
 import 'package:tasks/domain/usecases/task/get_task_by_id_usecase.dart'
     as _i336;
 import 'package:tasks/domain/usecases/task/update_task_usecase.dart' as _i786;
@@ -86,6 +89,7 @@ import 'package:tasks/presentaion/pages/auth/bloc/authentication_bloc.dart'
     as _i9;
 import 'package:tasks/presentaion/pages/projects/bloc/projects_bloc.dart'
     as _i465;
+import 'package:tasks/presentaion/pages/tasks/bloc/tasks_bloc.dart' as _i96;
 
 extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -149,6 +153,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i895.AddProjectMemberUseCase(gh<_i119.ProjectRepository>()));
     gh.factory<_i73.GetAllUsersUseCase>(
         () => _i73.GetAllUsersUseCase(gh<_i119.ProjectRepository>()));
+    gh.factory<_i213.GetProjectMembersUseCase>(
+        () => _i213.GetProjectMembersUseCase(gh<_i119.ProjectRepository>()));
     gh.factory<_i970.UserRepository>(() => _i437.UserRepositoryImpl(
         remoteDataSource: gh<_i744.AuthRemoteDataSource>()));
     gh.factory<_i1028.DoLoginUseCase>(
@@ -159,6 +165,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i711.DeleteTaskUseCase(gh<_i351.TaskRepository>()));
     gh.factory<_i336.GetTaskByIdUseCase>(
         () => _i336.GetTaskByIdUseCase(gh<_i351.TaskRepository>()));
+    gh.factory<_i1047.GetMyTasksUseCase>(
+        () => _i1047.GetMyTasksUseCase(gh<_i351.TaskRepository>()));
     gh.factory<_i476.UpdateProfileUseCase>(
         () => _i476.UpdateProfileUseCase(gh<_i970.UserRepository>()));
     gh.factory<_i207.LogoutUseCase>(
@@ -188,6 +196,11 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i476.UpdateProfileUseCase>(),
           gh<_i576.GetProfileUseCase>(),
           gh<_i1028.RegisterUseCase>(),
+        ));
+    gh.factory<_i96.TasksBloc>(() => _i96.TasksBloc(
+          taskRepository: gh<_i351.TaskRepository>(),
+          getMyTasksUseCase: gh<_i1047.GetMyTasksUseCase>(),
+          getProjectMembersUseCase: gh<_i213.GetProjectMembersUseCase>(),
         ));
     return this;
   }

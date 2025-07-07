@@ -40,9 +40,9 @@ class _EmployeesPageState extends State<EmployeesPage> {
       // Mock data for demonstration
       await Future.delayed(const Duration(seconds: 1));
       _employees = [
-        User(id: 1, name: 'John Doe', phone: '+1234567890', avatar: 'https://i.pravatar.cc/150?img=1'),
-        User(id: 2, name: 'Jane Smith', phone: '+1987654321', avatar: 'https://i.pravatar.cc/150?img=2'),
-        User(id: 3, name: 'Mike Johnson', phone: '+1122334455', avatar: 'https://i.pravatar.cc/150?img=3'),
+        User(id: 1, name: 'John Doe', phone: '+1234567890', avatar: 'https://i.pravatar.cc/150?img=1', userName: '', email: ''),
+        User(id: 2, name: 'Jane Smith', phone: '+1987654321', avatar: 'https://i.pravatar.cc/150?img=2', userName: '', email: ''),
+        User(id: 3, name: 'Mike Johnson', phone: '+1122334455', avatar: 'https://i.pravatar.cc/150?img=3', userName: '', email: ''),
       ];
       _filteredEmployees = _employees;
     } catch (e) {

@@ -46,7 +46,7 @@ const String stageBaseUrl = 'http://localhost:5067';
 const String appStoreLink = '';
 const String playStoreLink = '';
 
-// --- New Backend Endpoints ---
+// --- Backend Endpoints ---
 const String RegisterEndpoint = '/register';
 const String LoginEndpoint = '/login';
 const String ProfileEndpoint = '/profile'; // GET, PUT
@@ -57,8 +57,3 @@ const String TaskByIdEndpoint = '/tasks/'; // +{id} GET, PUT, DELETE
 const String UsersEndpoint = '/users'; // GET - Get all users
 const String ProjectMembersEndpoint = '/projects/'; // +{projectId}/members GET, POST, DELETE
 
-// Old endpoints (commented out)
-// const String SendCode = '/api/auth/send-code';
-// const String VerifyCode = '/api/auth/verify';
-// const String Logout = '/api/auth/logout';
-// const String GetProfile = '/api/auth/profile';

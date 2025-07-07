@@ -7,15 +7,10 @@ part 'login_response.g.dart';
 
 @JsonSerializable()
 class LoginResponse extends DataMapper<User> {
-  int? id;
-  String? name;
-  String? phone;
-  String? phone_country;
-  String? language;
-  String? avatar;
+  User? user;
   String? token;
 
-  LoginResponse({this.token, this.id, this.name, this.phone, this.phone_country, this.language, this.avatar});
+  LoginResponse({this.token, this.user});
 
   factory LoginResponse.fromJson(Map<String, dynamic> json) => _$LoginResponseFromJson(json);
 
@@ -24,11 +19,16 @@ class LoginResponse extends DataMapper<User> {
   @override
   User mapToDomain() {
     return User(
-      id: id,
-      name: name,
-      phone: phone,
-      avatar: avatar,
       token: token,
+      userName: user?.userName ?? '',
+      email: user?.email ?? '',
+      fullName: user?.fullName ?? '',
+      id: user?.id,
+      avatar: user?.avatar,
+      phone: user?.phone,
+      phone_country: user?.phone_country,
+      phone_code: user?.phone_code,
+      lang: user?.lang,
     );
   }
 }

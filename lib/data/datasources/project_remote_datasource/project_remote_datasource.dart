@@ -1,7 +1,7 @@
 import '../../../application/core/commundomain/entitties/based_api_result/api_result_model.dart';
 import '../../entities/project.dart';
 import '../../entities/task.dart';
-import '../../entities/user.dart';
+import '../../../domain/models/user.dart';
 
 abstract class ProjectRemoteDataSource {
   Future<ApiResultModel<List<Project>?>> getProjects();

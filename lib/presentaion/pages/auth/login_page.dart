@@ -31,7 +31,6 @@ class _WelcomePageState extends State<LoginPage> {
   final passwordController = TextEditingController();
   final tooltipController = JustTheController();
 
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -42,7 +41,8 @@ class _WelcomePageState extends State<LoginPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             70.heightBox(),
-            SvgPicture.asset(AppAssets.logo, width: 200),
+            //  SvgPicture.asset(AppAssets.logo, width: 200),
+            Icon(Icons.person, size: 100, color: AppColors.primaryColor),
             Container(
               margin: const EdgeInsets.only(top: 70, left: 20, right: 20, bottom: 100),
               padding: const EdgeInsets.all(20),

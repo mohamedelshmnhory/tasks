@@ -7,7 +7,7 @@ import '../../../application/core/utils/constants/app_constants.dart';
 import '../../../application/core/utils/helpers/custom_exceptions/custom_connection_exception.dart';
 import '../../entities/project.dart';
 import '../../entities/task.dart';
-import '../../entities/user.dart';
+import '../../../domain/models/user.dart';
 import '../../network/dio_strategy_helper/concrete_strategies/get_request_strategy.dart';
 import '../../network/dio_strategy_helper/concrete_strategies/post_request_strategy.dart';
 import '../../network/dio_strategy_helper/concrete_strategies/put_request_strategy.dart';

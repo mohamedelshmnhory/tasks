@@ -1,4 +1,3 @@
-import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:tasks/application/core/di/app_component/app_component.dart';
@@ -7,7 +6,7 @@ import 'package:tasks/application/config/design_system/app_style.dart';
 import 'package:tasks/data/entities/project.dart';
 import 'package:tasks/data/entities/task.dart';
 import 'package:tasks/data/entities/task_status.dart';
-import 'package:tasks/data/entities/user.dart';
+import 'package:tasks/domain/models/user.dart';
 import 'package:tasks/presentaion/widgets/app_size_boxes.dart';
 import 'package:tasks/presentaion/widgets/custom_empty_widget.dart';
 import 'package:tasks/presentaion/widgets/custom_loading_widget.dart';
@@ -40,8 +39,6 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> with TickerProv
   Project? _project;
   List<Task> _tasks = [];
   List<Task> _filteredTasks = [];
-  bool _isLoading = true;
-  String? _errorMessage;
 
   // Filter states
   List<TaskStatus> _selectedStatuses = [];
@@ -83,7 +80,7 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> with TickerProv
         bool statusMatch = _selectedStatuses.isEmpty || _selectedStatuses.contains(task.status);
         bool memberMatch =
             _selectedMembers.isEmpty ||
-            (task.assignedUser != null && _selectedMembers.any((member) => member.id == task.assignedUser?.id));
+            (task.assignedUserId != null && _selectedMembers.any((member) => member.id == task.assignedUserId));
         return statusMatch && memberMatch;
       }).toList();
     });
@@ -707,7 +704,9 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> with TickerProv
   Widget _buildTaskCard(Task task) {
     return InkWell(
       onTap: () {
-        context.router.push(TaskDetailsRoute(task: task));
+        context.router.push(TaskDetailsRoute(task: task, users: _project?.members ?? [])).then((value) {
+          _loadProjectDetails();
+        });
       },
       child: Container(
         margin: const EdgeInsets.only(bottom: 12),
@@ -746,7 +745,7 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> with TickerProv
               children: [
                 Icon(Icons.person, size: 16, color: AppColors.primaryColor),
                 8.widthBox(),
-                CustomText(task.assignedUser?.fullName ?? task.assignedUser?.userName ?? 'Unassigned', style: AppStyle.meduim14),
+                CustomText(task.assignedUserName ?? task.assignedUser?.userName ?? 'Unassigned', style: AppStyle.meduim14),
                 const Spacer(),
                 Icon(Icons.calendar_today, size: 16, color: AppColors.primaryColor),
                 8.widthBox(),

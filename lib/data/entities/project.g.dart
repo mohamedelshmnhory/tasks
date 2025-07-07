@@ -20,6 +20,9 @@ Project _$ProjectFromJson(Map<String, dynamic> json) => Project(
       members: (json['members'] as List<dynamic>?)
           ?.map((e) => User.fromJson(e as Map<String, dynamic>))
           .toList(),
+      tasksNumber: (json['tasksNumber'] as num?)?.toInt(),
+      completedTasksNumber: (json['completedTasksNumber'] as num?)?.toInt(),
+      membersNumber: (json['membersNumber'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$ProjectToJson(Project instance) => <String, dynamic>{
@@ -32,4 +35,8 @@ Map<String, dynamic> _$ProjectToJson(Project instance) => <String, dynamic>{
         'tasks': value,
       if (instance.members?.map((e) => e.toJson()).toList() case final value?)
         'members': value,
+      if (instance.tasksNumber case final value?) 'tasksNumber': value,
+      if (instance.completedTasksNumber case final value?)
+        'completedTasksNumber': value,
+      if (instance.membersNumber case final value?) 'membersNumber': value,
     };

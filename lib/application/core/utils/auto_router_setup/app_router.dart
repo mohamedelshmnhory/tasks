@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../data/entities/task.dart';
+import '../../../../domain/models/user.dart';
 import '../../../../presentaion/pages/auth/login_page.dart';
 import '../../../../presentaion/pages/auth/pin_code_page.dart';
 import '../../../../presentaion/pages/auth/register_page.dart';

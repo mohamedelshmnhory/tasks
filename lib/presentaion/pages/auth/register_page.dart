@@ -45,7 +45,8 @@ class _RegisterPageState extends State<RegisterPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 70.heightBox(),
-                SvgPicture.asset(AppAssets.logo, width: 240),
+                // SvgPicture.asset(AppAssets.logo, width: 240),
+                Icon(Icons.person, size: 100, color: AppColors.primaryWhite),
                 Container(
                   margin: const EdgeInsets.only(top: 70, left: 20, right: 20, bottom: 100),
                   padding: const EdgeInsets.all(20),
@@ -73,10 +74,9 @@ class _RegisterPageState extends State<RegisterPage> {
                             CustomText(
                               'تسجيل حساب جديد',
                               textAlign: TextAlign.center,
-                              style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                                    color: AppColors.primaryWhite,
-                                    fontWeight: FontWeight.w900,
-                                  ),
+                              style: Theme.of(
+                                context,
+                              ).textTheme.titleLarge?.copyWith(color: AppColors.primaryWhite, fontWeight: FontWeight.w900),
                             ),
                             10.heightBox(),
                             AppTextField(
@@ -139,14 +139,16 @@ class _RegisterPageState extends State<RegisterPage> {
                                     title: 'تسجيل',
                                     onPressed: () {
                                       if (formKey.currentState?.validate() ?? false) {
-                                        authBloc.add(RegisterEvent(
-                                          requestModel: LoginRequest(
-                                            username: nameController.text,
-                                            email: emailController.text,
-                                            phone: phoneController.text,
-                                            passwordHash: passwordController.text,
+                                        authBloc.add(
+                                          RegisterEvent(
+                                            requestModel: LoginRequest(
+                                              username: nameController.text,
+                                              email: emailController.text,
+                                              phone: phoneController.text,
+                                              passwordHash: passwordController.text,
+                                            ),
                                           ),
-                                        ));
+                                        );
                                       }
                                     },
                                   ),
@@ -155,10 +157,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               onPressed: () {
                                 context.router.replace(const LoginRoute());
                               },
-                              child: const Text(
-                                'لديك حساب بالفعل؟ تسجيل الدخول',
-                                style: TextStyle(color: Colors.white),
-                              ),
+                              child: const Text('لديك حساب بالفعل؟ تسجيل الدخول', style: TextStyle(color: Colors.white)),
                             ),
                           ],
                         ),

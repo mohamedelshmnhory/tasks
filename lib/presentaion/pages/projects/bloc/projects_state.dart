@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import '../../../../data/entities/project.dart';
 import '../../../../data/entities/task.dart';
-import '../../../../data/entities/user.dart';
+import '../../../../domain/models/user.dart';
 
 abstract class ProjectsState extends Equatable {
   const ProjectsState();

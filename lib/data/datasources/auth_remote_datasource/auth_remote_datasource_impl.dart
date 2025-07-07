@@ -73,7 +73,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       );
       return result.when(
         success: (Response response) async {
-          var result = User.fromJson(response.data['data']);
+          var result = User.fromJson(response.data);
           return ApiResultModel<User?>.success(data: result);
         },
         failure: (ErrorResultModel errorModel) {

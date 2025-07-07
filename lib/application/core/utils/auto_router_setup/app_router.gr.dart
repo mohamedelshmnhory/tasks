@@ -86,6 +86,7 @@ abstract class _$AppRouter extends RootStackRouter {
         child: TaskDetailsPage(
           key: args.key,
           task: args.task,
+          users: args.users,
         ),
       );
     },
@@ -289,12 +290,14 @@ class TaskDetailsRoute extends PageRouteInfo<TaskDetailsRouteArgs> {
   TaskDetailsRoute({
     Key? key,
     required Task task,
+    required List<User> users,
     List<PageRouteInfo>? children,
   }) : super(
           TaskDetailsRoute.name,
           args: TaskDetailsRouteArgs(
             key: key,
             task: task,
+            users: users,
           ),
           initialChildren: children,
         );
@@ -309,15 +312,18 @@ class TaskDetailsRouteArgs {
   const TaskDetailsRouteArgs({
     this.key,
     required this.task,
+    required this.users,
   });
 
   final Key? key;
 
   final Task task;
 
+  final List<User> users;
+
   @override
   String toString() {
-    return 'TaskDetailsRouteArgs{key: $key, task: $task}';
+    return 'TaskDetailsRouteArgs{key: $key, task: $task, users: $users}';
   }
 }
 
