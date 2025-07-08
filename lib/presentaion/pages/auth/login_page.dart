@@ -33,11 +33,9 @@ class _WelcomePageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(),
-      child: Scaffold(
-        backgroundColor: Colors.black45,
-        body: Column(
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             70.heightBox(),
@@ -46,8 +44,8 @@ class _WelcomePageState extends State<LoginPage> {
             Container(
               margin: const EdgeInsets.only(top: 70, left: 20, right: 20, bottom: 100),
               padding: const EdgeInsets.all(20),
-              decoration: const BoxDecoration(
-                color: Colors.white24,
+              decoration:   BoxDecoration(
+                color: AppColors.lighterPrimaryColor, //Colors.blueAccent,
                 borderRadius: BorderRadius.all(Radius.circular(AppStyle.borderRadius)),
               ),
               child: CustomBlocConsumer<AuthenticationBloc, AuthenticationState>(
@@ -76,6 +74,7 @@ class _WelcomePageState extends State<LoginPage> {
                       CustomText(
                         'من فضلك ادخل اسم المستخدم وكلمة المرور لتسجيل الدخول',
                         textAlign: TextAlign.center,
+                        maxLines: 2,
                         style: Theme.of(
                           context,
                         ).textTheme.bodyLarge?.copyWith(color: AppColors.primaryWhite, fontWeight: FontWeight.bold),

@@ -251,7 +251,7 @@ class ProjectsRoute extends PageRouteInfo<void> {
           initialChildren: children,
         );
 
-  static const String name = 'ProjectsRoute';
+  static const String name = 'projects';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

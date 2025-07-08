@@ -18,6 +18,6 @@ class AppColors {
   static const Color scaffoldColor = Color(0xFFF3F3F3);
 
   static Color get lighterPrimaryColor {
-    return Color.lerp(primaryColor, Colors.white, 0.8)!;
+    return Color.lerp(primaryColor, Colors.white, 0.6)!;
   }
 }

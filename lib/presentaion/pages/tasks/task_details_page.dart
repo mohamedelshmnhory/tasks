@@ -41,6 +41,10 @@ class _TaskDetailsPageState extends State<TaskDetailsPage> {
   User? _selectedUser;
   List<Attachment> _attachments = [];
 
+  // Download progress state
+  double? _downloadProgress;
+  int? _downloadingAttachmentIndex;
+
   @override
   void initState() {
     super.initState();
@@ -195,43 +199,69 @@ class _TaskDetailsPageState extends State<TaskDetailsPage> {
                             itemCount: _attachments.length,
                             itemBuilder: (context, index) {
                               final attachment = _attachments[index];
-                              return Container(
-                                width: 300,
-                                margin: const EdgeInsets.only(right: 8),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(12),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.grey.withOpacity(0.1),
-                                      spreadRadius: 1,
-                                      blurRadius: 3,
-                                      offset: const Offset(0, 1),
+                              return StatefulBuilder(
+                                builder: (context, setState) {
+                                  return Container(
+                                    width: 300,
+                                    margin: const EdgeInsets.only(right: 8),
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(12),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.grey.withOpacity(0.1),
+                                          spreadRadius: 1,
+                                          blurRadius: 3,
+                                          offset: const Offset(0, 1),
+                                        ),
+                                      ],
                                     ),
-                                  ],
-                                ),
-                                child: Center(
-                                  child: ListTile(
-                                    leading: const Icon(Icons.attach_file),
-                                    title: Text(
-                                      attachment.fileName,
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
+                                    child: Center(
+                                      child: ListTile(
+                                        leading: const Icon(Icons.attach_file),
+                                        title: Text(attachment.fileName, maxLines: 1, overflow: TextOverflow.ellipsis),
+                                        subtitle: Text(
+                                          DateFormat('yyyy-MM-dd, hh:mm a').format(attachment.uploadedAt),
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                        trailing: _downloadingAttachmentIndex == index && _downloadProgress != null
+                                            ? SizedBox(
+                                                width: 60,
+                                                child: LinearProgressIndicator(value: _downloadProgress, color: Colors.green),
+                                              )
+                                            : GestureDetector(
+                                                child: const Icon(Icons.download, size: 20),
+                                                onTap: () async {
+                                                  setState(() {
+                                                    _downloadingAttachmentIndex = index;
+                                                    _downloadProgress = 0.0;
+                                                  });
+                                                  try {
+                                                    await downloadFile(
+                                                      // Use the real URL if available, fallback to the sample
+                                                      // 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+                                                      attachment.url ??
+                                                          'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+                                                      attachment.fileName,
+                                                      onProgress: (progress) {
+                                                        setState(() {
+                                                          _downloadProgress = progress;
+                                                        });
+                                                      },
+                                                    );
+                                                  } finally {
+                                                    setState(() {
+                                                      _downloadingAttachmentIndex = null;
+                                                      _downloadProgress = null;
+                                                    });
+                                                  }
+                                                },
+                                              ),
+                                      ),
                                     ),
-                                    subtitle: Text(
-                                      DateFormat('yyyy-MM-dd, hh:mm a').format(attachment.uploadedAt),
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                    trailing: GestureDetector(
-                                      child: const Icon(Icons.download, size: 20),
-                                      onTap: () {
-                                        downloadFile(attachment.url!, attachment.fileName);
-                                        // tasksBloc.add(DownloadTaskAttachment(widget.task.id!, attachment.id));
-                                      },
-                                    ),
-                                  ),
-                                ),
+                                  );
+                                },
                               );
                             },
                           ),
